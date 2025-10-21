@@ -14,10 +14,15 @@ Consulte sempre o arquivo `AGENT_INSTRUCTIONS.md` para a stack atualizada, mas o
 
 ## Como as Tarefas Serão Passadas
 
-1.  **Contexto:** Eu fornecerei o objetivo da tarefa e os arquivos relevantes que você precisará modificar ou criar.
-2.  **Estrutura de Código:** Siga a arquitetura de pastas definida. A lógica de jogo (Phaser) fica em `src/game`, e a UI (Svelte) fica em `src/ui`.
-3.  **Implementação:** Sua tarefa será escrever o código TypeScript/Svelte para cumprir o objetivo. Certifique-se de que o código seja limpo e siga as convenções do projeto.
-4.  **Finalização:** Ao concluir, apenas me informe que a tarefa foi completada. Eu serei responsável por testar e commitar seu trabalho.
+1.  **Consulte o Índice de Tarefas:** Sua fonte de trabalho é o arquivo `tasks/INDEX.md`. Procure por tarefas com a caixa de seleção desmarcada (`- [ ]`).
+2.  **Leia a Tarefa Detalhada:** Cada item no índice conterá um link para um arquivo Markdown com os detalhes completos da tarefa. Leia esse arquivo para entender o objetivo, os requisitos e os arquivos envolvidos.
+3.  **Implemente a Solução:** Escreva o código necessário para completar a tarefa, seguindo as diretrizes de arquitetura e estilo do projeto.
+
+## Finalização e Revisão
+
+1.  **Solicite a Revisão:** Ao concluir a implementação, informe-me que você terminou e que o trabalho está pronto para minha revisão. **Não marque a tarefa como concluída ainda.**
+2.  **Aguarde a Aprovação:** Eu irei revisar o código que você produziu.
+3.  **Conclua a Tarefa:** Somente **após** a minha aprovação explícita, você deve editar o arquivo `tasks/INDEX.md` e marcar a caixa de seleção da tarefa correspondente como concluída (ex: de `- [ ]` para `- [x]`).
 
 ## Exemplo de Tarefa
 
