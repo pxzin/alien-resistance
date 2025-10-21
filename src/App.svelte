@@ -3,6 +3,7 @@
   import Phaser from 'phaser';
   import { gameConfig } from './game/main';
   import { BootScene } from './game/scenes/BootScene';
+  import Button from './ui/Button.svelte';
 
   onMount(() => {
     // Adiciona a BootScene à configuração
@@ -20,20 +21,8 @@
   });
 </script>
 
-<main>
+<main class="text-center p-4">
   <h1>Alien Resistance (Svelte + Phaser)</h1>
-  <div id="game-container"></div>
+  <Button label="Click Me" />
+  <div id="game-container" class="mx-auto w-800px h-600px border border-white"></div>
 </main>
-
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-  }
-  .game-container {
-    margin: 0 auto;
-    width: 800px; /* Match game width */
-    height: 600px; /* Match game height */
-    border: 1px solid #fff;
-  }
-</style>
