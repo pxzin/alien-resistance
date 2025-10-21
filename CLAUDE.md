@@ -20,8 +20,13 @@ Consulte sempre o arquivo `AGENT_INSTRUCTIONS.md` para a stack atualizada, mas o
 
 ## Finalização e Revisão
 
-1.  **Solicite a Revisão:** Ao concluir a implementação, informe-me que você terminou e que o trabalho está pronto para minha revisão. **Não marque a tarefa como concluída ainda.**
-2.  **Aguarde a Aprovação:** Eu irei revisar o código que você produziu.
+1.  **Solicite a Revisão com Instruções de Teste:** Ao concluir a implementação, informe-me que você terminou e peça para eu testar. Sua solicitação deve incluir:
+    - **O que foi feito:** Um resumo das alterações (ex: "Criei a BootScene e a integrei no App.svelte").
+    - **Como testar:** Passos claros para verificação (ex: "Execute `pnpm dev` e abra o navegador").
+    - **Resultado esperado:** O que eu devo ver na tela (ex: "Você deve ver um fundo cinza com o texto 'BootScene Active'").
+
+2.  **Aguarde a Aprovação:** Eu irei realizar o teste e revisar o código. **Não marque a tarefa como concluída ainda.**
+
 3.  **Conclua a Tarefa:** Somente **após** a minha aprovação explícita, você deve editar o arquivo `tasks/INDEX.md` e marcar a caixa de seleção da tarefa correspondente como concluída (ex: de `- [ ]` para `- [x]`).
 
 ## Exemplo de Tarefa
