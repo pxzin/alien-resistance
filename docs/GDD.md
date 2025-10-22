@@ -92,18 +92,18 @@ Para reduzir a aleatoriedade e recompensar o risco, o jogo usará um sistema de 
 
 ### 2.4. Classes e Progressão de Personagens
 
-#### 2.4.1. Arquétipos de Soldados
+#### 2.4.1. Soldier Archetypes
 
 Os soldados, embora únicos, podem ser especializados em diferentes arquétipos de combate, cada um com um papel tático distinto. As classes iniciais planejadas são:
 
-- **Assalto:** Especialista em combate de curta distância com espingardas e alta mobilidade.
-- **Fuzileiro:** A espinha dorsal da equipe, versátil e eficaz em médias distâncias.
-- **Suporte:** Focado em curar, fortalecer aliados e aplicar debuffs nos inimigos.
+- **Assault:** Especialista em combate de curta distância com espingardas e alta mobilidade.
+- **Rifleman:** A espinha dorsal da equipe, versátil e eficaz em médias distâncias.
+- **Support:** Focado em curar, fortalecer aliados e aplicar debuffs nos inimigos.
 - **Sniper:** Mestre do longo alcance, capaz de eliminar alvos de alta prioridade com precisão.
-- **Pesado (Heavy):** Especialista em armas pesadas, explosivos e fogo de supressão.
-- **Engenheiro/Técnico:** Controla unidades robóticas (drones, auto-turrets), hackeia inimigos mecânicos e posiciona equipamentos táticos.
+- **Heavy:** Especialista em armas pesadas, explosivos e fogo de supressão.
+- **Engineer/Technician:** Controla unidades robóticas (drones, auto-turrets), hackeia inimigos mecânicos e posiciona equipamentos táticos.
 
-*Nota de Planejamento Futuro: A possibilidade de classes "Híbridas", que incorporam DNA alienígena para obter habilidades extraordinárias, será explorada como uma mecânica de final de jogo ou expansão.*
+*Future Planning Note: The possibility of "Hybrid" classes, which incorporate alien DNA to obtain extraordinary abilities, will be explored as a late-game mechanic or expansion.*
 
 #### 2.4.2. Sistema de Progressão (Árvore de Habilidades)
 
@@ -124,14 +124,14 @@ A força de invasão alienígena evolui em complexidade e ameaça ao longo do jo
 - **Tier 2: O Exército Organizado:** Conforme o jogo avança, surgem unidades humanoides e racionais que usam armas, cobertura e táticas de esquadrão.
 - **Tier 3: A Elite Dominante:** Nas fases mais avançadas, o jogador enfrentará a elite da força de invasão: unidades com habilidades psíquicas, armaduras pesadas, e capacidade de comandar outras unidades.
 
-### 3.2. Inimigos Iniciais (Tier Feral)
+### 3.2. Initial Enemies (Feral Tier)
 
 As primeiras ameaças que os rebeldes encontrarão são:
 
-- **Aranha-like (Assassino):** Uma unidade que prioriza alvos de baixa armadura. Seu ataque causa dano inicial baixo, mas aplica um efeito de **veneno** que causa dano contínuo (Damage over Time) por vários turnos, ignorando a armadura do soldado.
-- **Cachorro-like (Lutador):** A principal unidade de combate corpo a corpo do tier feral. Possui um bom equilíbrio entre saúde e dano, agindo como a linha de frente inimiga para engajar diretamente os soldados do jogador.
-- **Rato-like (Batedor):** Uma unidade de suporte não-combatente. É rápido e difícil de acertar. Sua principal função é 'marcar' os soldados do jogador, aplicando um debuff que aumenta a chance de outros alienígenas acertá-los.
-- **Voador-like (Harasser):** Uma unidade voadora rápida e difícil de acertar. Ignora a cobertura terrestre para aplicar dano baixo e constante em alvos expostos, forçando os jogadores a se reposicionarem e a não negligenciar o espaço aéreo.
+- **Spider-like (Assassin):** Uma unidade que prioriza alvos de baixa armadura. Seu ataque causa dano inicial baixo, mas aplica um efeito de **veneno** que causa dano contínuo (Damage over Time) por vários turnos, ignorando a armadura do soldado.
+- **Dog-like (Brawler):** A principal unidade de combate corpo a corpo do tier feral. Possui um bom equilíbrio entre saúde e dano, agindo como a linha de frente inimiga para engajar diretamente os soldados do jogador.
+- **Rat-like (Scout):** Uma unidade de suporte não-combatente. É rápido e difícil de acertar. Sua principal função é 'marcar' os soldados do jogador, aplicando um debuff que aumenta a chance de outros alienígenas acertá-los.
+- **Flyer-like (Harasser):** Uma unidade voadora rápida e difícil de acertar. Ignora a cobertura terrestre para aplicar dano baixo e constante em alvos expostos, forçando os jogadores a se reposicionarem e a não negligenciar o espaço aéreo.
 
 *Nota de Design: A definição dos inimigos do 'Tier 2: O Exército Organizado' e 'Tier 3: A Elite Dominante' será feita em uma etapa futura.*
 
@@ -149,12 +149,13 @@ O jogo terá atmosferas distintas para cada uma de suas fases, criando um contra
 
 ### 4.2. Direção de Arte Visual
 
-O jogo adotará um estilo **Pixel Art Sombrio e Detalhado**, com o objetivo de criar uma atmosfera forte e memorável, mesmo com uma estética 2D.
+O jogo adotará um estilo **Pixel Art Sombrio e Detalhado**, com uma abordagem dupla para a apresentação:
 
-- **Inspirações Principais:** *Darkest Dungeon*, *Blasphemous*, *Into the Breach*.
-- **Personagens e Inimigos:** Sprites detalhados com animações fluidas e impactantes, que comunicam personalidade e ameaça.
-- **Ambientes:** Cenários ricos em detalhes, com alto contraste entre luz e sombra para reforçar o clima opressor. A paleta de cores será, em geral, escura e dessaturada, com pontos de cor para destacar elementos importantes (sangue, tecnologia, etc.).
-- **Interface (UI):** A UI tática será minimalista e funcional. A UI da base terá um estilo "sci-fi pixelado" mais limpo, para contrastar com a sujeira do mundo exterior.
+- **Combate Tático (Visão Isométrica):** A jogabilidade principal ocorrerá em um mapa isométrico. Os sprites dos personagens e inimigos serão criados para funcionar nesta perspectiva, com animações para as direções principais de movimento e ataque.
+- **Menus e Bestiário (Visão de Perfil):** Para momentos de maior detalhe, como a visualização de status dos soldados, o bestiário de inimigos ou a interface da base, serão usadas artes de perfil (side-scrolling) mais elaboradas e detalhadas.
+
+- **Inspirações Principais:** *Darkest Dungeon* (para a arte de perfil e atmosfera), *Final Fantasy Tactics* (para o gameplay isométrico), *Into the Breach* (para a clareza tática).
+- **Paleta e Iluminação:** A paleta de cores será, em geral, escura e dessaturada, com alto contraste entre luz e sombra para reforçar o clima opressor. Pontos de cor vibrante serão usados para destacar elementos importantes (sangue, tecnologia, olhos de inimigos, etc.).
 
 ### 4.3. Direção de Áudio
 

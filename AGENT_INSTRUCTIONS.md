@@ -9,6 +9,7 @@ Este documento contém informações e diretrizes compartilhadas para todos os a
 - **Framework de UI:** Svelte 5
 - **Estilo CSS:** UnoCSS
 - **Gerenciador de Pacotes:** pnpm
+- **Perspectiva de Câmera:** Isométrica (para combate tático)
 
 ## 2. Estrutura do Projeto
 
@@ -21,6 +22,12 @@ Este documento contém informações e diretrizes compartilhadas para todos os a
     - `types/`: Definições de tipo TypeScript.
 
 ## 3. Estilo de Código e Convenções
+
+### 3.1. Idioma do Projeto
+
+- **O idioma oficial para todo o conteúdo do projeto é o Inglês.**
+- Isso inclui: código, comentários, nomes de variáveis, nomes de arquivos, documentação (como o GDD) e mensagens de commit.
+- Nossas conversas podem continuar em português, mas os artefatos do projeto devem ser em inglês.
 
 _(A ser definido)_
 
