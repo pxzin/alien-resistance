@@ -50,5 +50,5 @@
     </div>
   {/if}
 
-  <div id="game-container" class="mx-auto w-800px h-600px border border-white"></div>
+  <div id="game-container" class="mx-auto w-800px h-576px border border-white"></div>
 </main>
