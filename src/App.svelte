@@ -11,24 +11,24 @@
   let currentScene = $state('');
 
   onMount(() => {
-    // Adiciona todas as cenas à configuração
+    // Add all scenes to configuration
     const config = {
       ...gameConfig,
       scene: [BootScene, MainMenuScene, GameScene],
     };
 
-    // Cria a instância do jogo
+    // Create game instance
     const game = new Phaser.Game(config);
 
-    // Registra o game no SceneManager
+    // Register game with SceneManager
     sceneManager.setGame(game);
 
-    // Escuta mudanças de cena
+    // Listen for scene changes
     sceneManager.onSceneChange((sceneKey) => {
       currentScene = sceneKey;
     });
 
-    // Define a cena inicial
+    // Set initial scene
     currentScene = 'BootScene';
 
     return () => {

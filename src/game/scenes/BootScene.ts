@@ -7,10 +7,10 @@ export class BootScene extends Phaser.Scene {
   }
 
   create(): void {
-    // Define a cor de fundo do palco
+    // Set dark background color
     this.cameras.main.setBackgroundColor(0x222222);
 
-    // Adiciona texto de loading
+    // Add loading text
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
 
@@ -19,10 +19,10 @@ export class BootScene extends Phaser.Scene {
       color: '#ffffff',
     }).setOrigin(0.5);
 
-    // Carrega assets essenciais aqui (quando houver)
-    // Por enquanto, apenas transita para o menu principal
+    // Load essential assets here (when available)
+    // For now, just transition to main menu
 
-    // Transição automática para o MainMenuScene
+    // Auto-transition to MainMenuScene
     this.time.delayedCall(500, () => {
       sceneManager.changeScene('MainMenuScene');
     });

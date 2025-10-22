@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Isometric Tileset Generator v3 - FIXED</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        canvas {
+            border: 2px solid #444;
+            margin: 10px 0;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            background: #000;
+        }
+        button {
+            background: #2a6a2a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .info {
+            background: #2a2a2a;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Isometric Tileset Generator v3 - CORRECTED</h1>
+    <div class="info">
+        <p><strong>Each tile:</strong> 64x64 pixels (full diamond)</p>
+        <p><strong>Canvas:</strong> 192x64 pixels (3 tiles side by side)</p>
+        <p><strong>Format:</strong> Isometric diamond, dark pixel art style</p>
+    </div>
+
+    <canvas id="canvas" width="192" height="64"></canvas>
+    <br>
+    <button onclick="download()">Download tileset-isometric.png</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const TILE_SIZE = 64;  // Square tile containing the diamond
+
+        function drawIsometricTile(offsetX, baseColor, highlightColor, shadowColor) {
+            const centerX = offsetX + TILE_SIZE / 2;
+            const centerY = TILE_SIZE / 2;
+
+            // Draw isometric diamond (losango)
+            ctx.fillStyle = baseColor;
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);                    // Top
+            ctx.lineTo(centerX + 32, centerY);         // Right
+            ctx.lineTo(centerX, TILE_SIZE);            // Bottom
+            ctx.lineTo(centerX - 32, centerY);         // Left
+            ctx.closePath();
+            ctx.fill();
+
+            // Left edge (highlight)
+            ctx.strokeStyle = highlightColor;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX - 32, centerY);
+            ctx.stroke();
+
+            // Top edge (highlight)
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX + 32, centerY);
+            ctx.stroke();
+
+            // Right edge (shadow)
+            ctx.strokeStyle = shadowColor;
+            ctx.beginPath();
+            ctx.moveTo(centerX + 32, centerY);
+            ctx.lineTo(centerX, TILE_SIZE);
+            ctx.stroke();
+
+            // Bottom edge (shadow)
+            ctx.beginPath();
+            ctx.moveTo(centerX, TILE_SIZE);
+            ctx.lineTo(centerX - 32, centerY);
+            ctx.stroke();
+
+            // Add pixel art texture
+            ctx.fillStyle = shadowColor;
+            for (let i = 0; i < 20; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * 25;
+                const px = centerX + Math.cos(angle) * dist;
+                const py = centerY + Math.sin(angle) * dist * 0.5;
+
+                // Check if inside diamond
+                const dx = Math.abs(px - centerX);
+                const dy = Math.abs(py - centerY);
+                if (dx / 32 + dy / 32 < 0.9) {
+                    ctx.fillRect(Math.floor(px), Math.floor(py), 1, 1);
+                }
+            }
+        }
+
+        function generate() {
+            // Clear
+            ctx.fillStyle = '#00000000'; // Transparent
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Tile 0: Dead Grass
+            drawIsometricTile(0, '#3a4428', '#4a5438', '#2a3418');
+
+            // Tile 1: Concrete
+            drawIsometricTile(64, '#454545', '#555555', '#353535');
+
+            // Tile 2: Dirt
+            drawIsometricTile(128, '#4a3a2a', '#5a4a3a', '#3a2a1a');
+        }
+
+        function download() {
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tileset-isometric.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        generate();
+        setTimeout(download, 1000);
+    </script>
+</body>
+</html>

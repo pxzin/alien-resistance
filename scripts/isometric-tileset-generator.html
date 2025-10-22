@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Isometric Tileset Generator</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        canvas {
+            border: 2px solid #444;
+            margin: 10px 0;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        button {
+            background: #2a6a2a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #3a7a3a;
+        }
+        .info {
+            background: #2a2a2a;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Isometric Tileset Generator - Dark Pixel Art</h1>
+    <div class="info">
+        <p><strong>Tiles:</strong></p>
+        <ul>
+            <li>0: Grass (dark green, dead vegetation)</li>
+            <li>1: Concrete (gray, cracked pavement)</li>
+            <li>2: Dirt (brown, debris)</li>
+        </ul>
+        <p><strong>Style:</strong> Isometric, dark post-apocalyptic, high contrast</p>
+    </div>
+
+    <canvas id="canvas" width="192" height="64"></canvas>
+    <br>
+    <button onclick="download()">Download Isometric Tileset</button>
+    <button onclick="regenerate()">Regenerate</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Isometric tile dimensions
+        const TILE_WIDTH = 64;
+        const TILE_HEIGHT = 32;
+        const PIXEL_SIZE = 2; // For pixel art effect
+
+        function drawIsometricTile(x, y, colors) {
+            const hw = TILE_WIDTH / 2;
+            const hh = TILE_HEIGHT / 2;
+
+            // Top face
+            ctx.fillStyle = colors.top;
+            ctx.beginPath();
+            ctx.moveTo(x + hw, y);
+            ctx.lineTo(x + TILE_WIDTH, y + hh);
+            ctx.lineTo(x + hw, y + TILE_HEIGHT);
+            ctx.lineTo(x, y + hh);
+            ctx.closePath();
+            ctx.fill();
+
+            // Add edge highlights for depth
+            ctx.strokeStyle = colors.highlight;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(x + hw, y);
+            ctx.lineTo(x, y + hh);
+            ctx.stroke();
+
+            // Add shadow edge
+            ctx.strokeStyle = colors.shadow;
+            ctx.beginPath();
+            ctx.moveTo(x + hw, y + TILE_HEIGHT);
+            ctx.lineTo(x + TILE_WIDTH, y + hh);
+            ctx.stroke();
+
+            // Add noise/texture for pixel art feel
+            for (let i = 0; i < 20; i++) {
+                const px = x + Math.random() * TILE_WIDTH;
+                const py = y + Math.random() * TILE_HEIGHT;
+                if (isPointInDiamond(px, py, x + hw, y + hh, hw, hh)) {
+                    ctx.fillStyle = Math.random() > 0.5 ? colors.noise1 : colors.noise2;
+                    ctx.fillRect(Math.floor(px / PIXEL_SIZE) * PIXEL_SIZE,
+                                Math.floor(py / PIXEL_SIZE) * PIXEL_SIZE,
+                                PIXEL_SIZE, PIXEL_SIZE);
+                }
+            }
+        }
+
+        function isPointInDiamond(px, py, cx, cy, hw, hh) {
+            const dx = Math.abs(px - cx);
+            const dy = Math.abs(py - cy);
+            return (dx / hw + dy / hh) <= 1;
+        }
+
+        function generateTileset() {
+            // Clear canvas
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Tile 0: Dead Grass (dark green, desaturated)
+            drawIsometricTile(0, 16, {
+                top: '#3a4a2a',
+                highlight: '#4a5a3a',
+                shadow: '#2a3a1a',
+                noise1: '#2a3a1a',
+                noise2: '#4a5a3a'
+            });
+
+            // Tile 1: Cracked Concrete (gray, urban)
+            drawIsometricTile(64, 16, {
+                top: '#4a4a4a',
+                highlight: '#5a5a5a',
+                shadow: '#3a3a3a',
+                noise1: '#3a3a3a',
+                noise2: '#5a5a5a'
+            });
+
+            // Tile 2: Dirt/Debris (brown, rough)
+            drawIsometricTile(128, 16, {
+                top: '#5a4a3a',
+                highlight: '#6a5a4a',
+                shadow: '#4a3a2a',
+                noise1: '#4a3a2a',
+                noise2: '#6a5a4a'
+            });
+        }
+
+        function download() {
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tileset-isometric.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function regenerate() {
+            generateTileset();
+        }
+
+        // Generate on load
+        generateTileset();
+
+        // Auto download after 1 second
+        setTimeout(() => {
+            download();
+        }, 1000);
+    </script>
+</body>
+</html>

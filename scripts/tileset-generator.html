@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tileset Generator</title>
+</head>
+<body>
+    <h1>Tileset Generator</h1>
+    <canvas id="canvas" width="96" height="32"></canvas>
+    <br>
+    <button onclick="download()">Download Tileset</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const tileSize = 32;
+
+        // Tile 0: Verde (grama)
+        ctx.fillStyle = '#4CAF50';
+        ctx.fillRect(0, 0, tileSize, tileSize);
+
+        // Tile 1: Cinza (concreto)
+        ctx.fillStyle = '#757575';
+        ctx.fillRect(tileSize, 0, tileSize, tileSize);
+
+        // Tile 2: Marrom (terra)
+        ctx.fillStyle = '#8D6E63';
+        ctx.fillRect(tileSize * 2, 0, tileSize, tileSize);
+
+        function download() {
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tileset.png';
+                a.click();
+            });
+        }
+
+        // Auto download
+        setTimeout(() => {
+            download();
+        }, 500);
+    </script>
+</body>
+</html>

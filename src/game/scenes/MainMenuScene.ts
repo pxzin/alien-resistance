@@ -6,10 +6,10 @@ export class MainMenuScene extends Phaser.Scene {
   }
 
   create(): void {
-    // Fundo preto simples
+    // Simple black background
     this.cameras.main.setBackgroundColor(0x000000);
 
-    // Texto temporário para confirmar que a cena está ativa
+    // Temporary text to confirm scene is active
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
 

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Isometric Tileset Generator v2</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            font-family: monospace;
+            padding: 20px;
+        }
+        canvas {
+            border: 2px solid #444;
+            margin: 10px 0;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            background: #000;
+        }
+        button {
+            background: #2a6a2a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #3a7a3a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Isometric Tileset Generator v2 - Diamond Tiles</h1>
+
+    <p><strong>Tile size:</strong> 64x32 (isometric diamond)</p>
+    <p><strong>Total canvas:</strong> 192x64 pixels (3 tiles)</p>
+
+    <canvas id="canvas" width="192" height="64"></canvas>
+    <br>
+    <button onclick="download()">Download tileset-isometric.png</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        const TILE_W = 64;
+        const TILE_H = 32;
+
+        function drawIsometricDiamond(offsetX, baseColor, highlightColor, shadowColor) {
+            const centerX = offsetX + TILE_W / 2;
+            const centerY = TILE_H / 2;
+
+            // Draw diamond shape (isometric tile)
+            ctx.fillStyle = baseColor;
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);              // Top
+            ctx.lineTo(centerX + TILE_W/2, centerY);  // Right
+            ctx.lineTo(centerX, TILE_H);         // Bottom
+            ctx.lineTo(centerX - TILE_W/2, centerY);  // Left
+            ctx.closePath();
+            ctx.fill();
+
+            // Left highlight edge
+            ctx.strokeStyle = highlightColor;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX - TILE_W/2, centerY);
+            ctx.stroke();
+
+            // Top highlight edge
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX + TILE_W/2, centerY);
+            ctx.stroke();
+
+            // Right shadow edge
+            ctx.strokeStyle = shadowColor;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX + TILE_W/2, centerY);
+            ctx.lineTo(centerX, TILE_H);
+            ctx.stroke();
+
+            // Bottom shadow edge
+            ctx.beginPath();
+            ctx.moveTo(centerX, TILE_H);
+            ctx.lineTo(centerX - TILE_W/2, centerY);
+            ctx.stroke();
+
+            // Add texture dots (pixel art effect)
+            ctx.fillStyle = shadowColor;
+            for (let i = 0; i < 15; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const dist = Math.random() * TILE_W / 3;
+                const px = centerX + Math.cos(angle) * dist;
+                const py = centerY + Math.sin(angle) * dist / 2;
+
+                // Check if point is inside diamond
+                const dx = Math.abs(px - centerX);
+                const dy = Math.abs(py - centerY);
+                if (dx / (TILE_W/2) + dy / (TILE_H/2) < 0.9) {
+                    ctx.fillRect(Math.floor(px), Math.floor(py), 2, 2);
+                }
+            }
+        }
+
+        function generate() {
+            // Clear canvas
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Tile 0: Dead Grass (dark desaturated green)
+            drawIsometricDiamond(
+                0,
+                '#3a4428',      // base
+                '#4a5438',      // highlight
+                '#2a3418'       // shadow
+            );
+
+            // Tile 1: Cracked Concrete (dark gray)
+            drawIsometricDiamond(
+                TILE_W,
+                '#454545',      // base
+                '#555555',      // highlight
+                '#353535'       // shadow
+            );
+
+            // Tile 2: Dirt/Rubble (dark brown)
+            drawIsometricDiamond(
+                TILE_W * 2,
+                '#4a3a2a',      // base
+                '#5a4a3a',      // highlight
+                '#3a2a1a'       // shadow
+            );
+        }
+
+        function download() {
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tileset-isometric.png';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        // Generate on load
+        generate();
+
+        // Auto download
+        setTimeout(download, 1000);
+    </script>
+</body>
+</html>
